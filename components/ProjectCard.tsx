@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import type { Project } from '@/types';
+import { getMetafieldValue } from '@/lib/cosmic';
 
 interface ProjectCardProps {
   project: Project;
@@ -8,7 +9,7 @@ interface ProjectCardProps {
 
 export default function ProjectCard({ project, featured = false }: ProjectCardProps) {
   const screenshot = project.metadata?.screenshot;
-  const techStack = project.metadata?.tech_stack;
+  const techStack = getMetafieldValue(project.metadata?.tech_stack);
   const liveUrl = project.metadata?.live_url;
   const githubUrl = project.metadata?.github_url;
   const description = project.metadata?.description || '';
