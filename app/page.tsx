@@ -1,3 +1,4 @@
+import type { Metadata } from 'next';
 import HeroSection from '@/components/HeroSection';
 import SectionHeading from '@/components/SectionHeading';
 import ProjectCard from '@/components/ProjectCard';
@@ -5,6 +6,44 @@ import SkillBar from '@/components/SkillBar';
 import ExperienceCard from '@/components/ExperienceCard';
 import { getFeaturedProjects, getSkills, getWorkExperience, getMetafieldValue } from '@/lib/cosmic';
 import Link from 'next/link';
+
+export const metadata: Metadata = {
+  title: 'My AI Portfolio | AI Engineer & Full Stack Developer',
+  description:
+    'Explore my AI development portfolio featuring projects in machine learning, full stack development, and cutting-edge AI technologies.',
+  alternates: {
+    canonical: '/',
+  },
+};
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'WebSite',
+      name: 'My AI Portfolio',
+      url: 'https://my-ai-portfolio.cosmic.site',
+      description:
+        'A creative portfolio showcasing AI development projects, skills, and work experience.',
+    },
+    {
+      '@type': 'Person',
+      name: 'AI Developer',
+      url: 'https://my-ai-portfolio.cosmic.site',
+      jobTitle: 'AI Engineer & Full Stack Developer',
+      knowsAbout: [
+        'Artificial Intelligence',
+        'Machine Learning',
+        'TensorFlow',
+        'React',
+        'Next.js',
+        'TypeScript',
+        'Python',
+        'Node.js',
+      ],
+    },
+  ],
+};
 
 export default async function HomePage() {
   const [projects, skills, experiences] = await Promise.all([
@@ -28,6 +67,12 @@ export default async function HomePage() {
 
   return (
     <div>
+      {/* JSON-LD Structured Data */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+
       {/* Hero */}
       <HeroSection />
 

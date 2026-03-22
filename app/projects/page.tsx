@@ -6,6 +6,14 @@ import { getProjects } from '@/lib/cosmic';
 export const metadata: Metadata = {
   title: 'Projects | My AI Portfolio',
   description: 'Browse my AI and development projects with live demos and source code.',
+  openGraph: {
+    title: 'Projects | My AI Portfolio',
+    description: 'Browse my AI and development projects with live demos and source code.',
+    url: '/projects',
+  },
+  alternates: {
+    canonical: '/projects',
+  },
 };
 
 export default async function ProjectsPage() {

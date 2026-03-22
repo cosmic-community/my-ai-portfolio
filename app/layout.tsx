@@ -4,11 +4,32 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import CosmicBadge from '@/components/CosmicBadge';
 
+const SITE_URL = 'https://my-ai-portfolio.cosmic.site';
+
 export const metadata: Metadata = {
+  metadataBase: new URL(SITE_URL),
   title: 'My AI Portfolio | AI Developer',
   description:
     'A creative portfolio showcasing AI development projects, skills, and work experience. Built with Next.js and Cosmic CMS.',
-  keywords: ['AI', 'developer', 'portfolio', 'machine learning', 'projects'],
+  keywords: ['AI', 'developer', 'portfolio', 'machine learning', 'projects', 'full stack', 'TensorFlow', 'React', 'Next.js'],
+  openGraph: {
+    type: 'website',
+    locale: 'en_US',
+    url: SITE_URL,
+    siteName: 'My AI Portfolio',
+    title: 'My AI Portfolio | AI Developer',
+    description:
+      'A creative portfolio showcasing AI development projects, skills, and work experience. Built with Next.js and Cosmic CMS.',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'My AI Portfolio | AI Developer',
+    description:
+      'A creative portfolio showcasing AI development projects, skills, and work experience. Built with Next.js and Cosmic CMS.',
+  },
+  alternates: {
+    canonical: SITE_URL,
+  },
 };
 
 export default function RootLayout({
