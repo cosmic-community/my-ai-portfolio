@@ -16,9 +16,39 @@ export async function generateMetadata({ params }: ProjectPageProps): Promise<Me
     return { title: 'Project Not Found | My AI Portfolio' };
   }
 
+  const description = project.metadata?.description || `Details about the ${project.title} project.`;
+  const screenshotUrl = project.metadata?.screenshot?.imgix_url
+    ? `${project.metadata.screenshot.imgix_url}?w=1200&h=630&fit=crop&auto=format`
+    : undefined;
+
   return {
     title: `${project.title} | My AI Portfolio`,
-    description: project.metadata?.description || `Details about the ${project.title} project.`,
+    description,
+    openGraph: {
+      title: `${project.title} | My AI Portfolio`,
+      description,
+      url: `/projects/${slug}`,
+      type: 'article',
+      ...(screenshotUrl && {
+        images: [
+          {
+            url: screenshotUrl,
+            width: 1200,
+            height: 630,
+            alt: project.title,
+          },
+        ],
+      }),
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: `${project.title} | My AI Portfolio`,
+      description,
+      ...(screenshotUrl && { images: [screenshotUrl] }),
+    },
+    alternates: {
+      canonical: `/projects/${slug}`,
+    },
   };
 }
 
