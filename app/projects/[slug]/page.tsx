@@ -2,7 +2,7 @@
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
-import { getProjectBySlug, getProjects } from '@/lib/cosmic';
+import { getProjectBySlug, getProjects, getMetafieldValue } from '@/lib/cosmic';
 
 interface ProjectPageProps {
   params: Promise<{ slug: string }>;
@@ -39,7 +39,7 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
 
   const screenshot = project.metadata?.screenshot;
   const description = project.metadata?.description || '';
-  const techStack = project.metadata?.tech_stack;
+  const techStack = getMetafieldValue(project.metadata?.tech_stack);
   const liveUrl = project.metadata?.live_url;
   const githubUrl = project.metadata?.github_url;
 
